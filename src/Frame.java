@@ -5,14 +5,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLOutput;
 
-public class Frame extends JFrame{
-
+public class Frame {
+    JFrame f = new JFrame();
 
     ImageIcon image = new ImageIcon("bill.jpg");
     JTextField input = new JTextField();
     JButton button = new JButton("Calculate");
 
-    String[] toConvertFrom = {"USD" , "Euro" , "Yen" , "Pound" , "CAN" , "Australian Dollar"};
+
+    String[] toConvertFrom = {"USD", "Euro", "Yen", "Pound", "CAN", "Australian Dollar"};
     JComboBox dropDown = new JComboBox(toConvertFrom);
     JComboBox dropDown2 = new JComboBox(toConvertFrom);
 
@@ -21,38 +22,50 @@ public class Frame extends JFrame{
 
     public static String[] arr = new String[3];
 
-     public void Frame() {
+    JLabel label = new JLabel("Answer Here");
 
-        this.setTitle("Currency Converter");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setSize(600, 500);
-        this.setVisible(true);
-        this.setLayout(null);
-        this.setIconImage(image.getImage());
-        this.getContentPane().setBackground(Color.DARK_GRAY);
 
-        input.setBounds(50,75,100,50);
-        input.setFont(new Font(Font.SERIF, Font.PLAIN,12));
-        input.setBackground(Color.orange);
-        input.setBorder(border1);
+    public void Frame(boolean call) {
 
-        dropDown.setBounds(187,75,150,50);
-        dropDown.setBackground(Color.orange);
-        dropDown.setBorder(border1);
 
-        dropDown2.setBounds(375,75,150,50);
-        dropDown2.setBackground(Color.orange);
-        dropDown2.setBorder(border1);
+            f.setTitle("Currency Converter");
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            f.setResizable(false);
+            f.setSize(600, 500);
+            f.setVisible(true);
+            f.setLayout(null);
+            f.setIconImage(image.getImage());
+            f.getContentPane().setBackground(Color.DARK_GRAY);
 
-        button.setBounds(225,200,150,50);
-        button.setBorder(border);
-        button.setBackground(Color.pink);
+            label.setBounds(250, 250, 200, 50);
+            label.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
+            label.setForeground(Color.white);
 
-        this.add(dropDown);
-        this.add(dropDown2);
-        this.add(button);
-        this.add(input);
+            input.setBounds(50, 75, 100, 50);
+            input.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
+            input.setBackground(Color.orange);
+            input.setBorder(border1);
+
+            dropDown.setBounds(187, 75, 150, 50);
+            dropDown.setBackground(Color.orange);
+            dropDown.setBorder(border1);
+
+            dropDown2.setBounds(375, 75, 150, 50);
+            dropDown2.setBackground(Color.orange);
+            dropDown2.setBorder(border1);
+
+            button.setBounds(225, 200, 150, 50);
+            button.setBorder(border);
+            button.setBackground(Color.pink);
+
+            f.add(dropDown);
+            f.add(dropDown2);
+            f.add(button);
+            f.add(input);
+            f.add(label);
+
+
+
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -60,17 +73,29 @@ public class Frame extends JFrame{
                 String currency1 = "" + dropDown.getItemAt(dropDown.getSelectedIndex());
                 String currency2 = "" + dropDown2.getItemAt(dropDown2.getSelectedIndex());
                 String value = input.getText();
+                getAmount(currency1, currency2, value,false);
 
-                getAmount(currency1,currency2,value);
+
 
             }
         });
     }
-    public void getAmount(String currency1, String currency2,String value){
-         CalculateAmount c = new CalculateAmount();
+
+
+    public void getAmount(String currency1, String currency2, String value, boolean run) {
+        CalculateAmount c = new CalculateAmount();
         arr[0] = currency1;
         arr[1] = currency2;
         arr[2] = value;
         c.calculate();
     }
+
+    public void setLabel2(){
+        System.out.println("Works");
+        label.setText("hello");
+        // this can be accessed from this class, but when called from other classes, it does not work.
+
+    }
+
+
 }
