@@ -2,13 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CalculateAmount extends Frame {
-
-    final double YEN_FACTOR = 114.87;
-    final double EURO_FACTOR = .88;
-    final double POUND_FACTOR = .74;
-    final double CAN_FACTOR = 1.28;
-    final double AUS_FACTOR = 1.38;
-
     Frame f1 = new Frame();
 
     public String info() {
@@ -34,7 +27,6 @@ public class CalculateAmount extends Frame {
                 coord2 = j;
             }
         }
-
         return calculate(coord1,coord2,money);
     }
     public String calculate(int x, int y, double amount){
@@ -45,10 +37,6 @@ public class CalculateAmount extends Frame {
                                         {1.26837,1.4432,0.01105,100,1.00,0.91759},
                                         {1.39,1.57,0.012,1.87,1.09,1.00}};
 
-
         return Integer.toString((int)(amount * (conversionFactors[y][x])));
-
-
-
     }
 }

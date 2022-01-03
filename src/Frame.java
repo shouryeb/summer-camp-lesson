@@ -25,8 +25,7 @@ public class Frame {
     JLabel label = new JLabel("Answer Here");
 
 
-    public void Frame(boolean call) {
-
+    public void Frame() {
 
             f.setTitle("Currency Converter");
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,9 +63,6 @@ public class Frame {
             f.add(input);
             f.add(label);
 
-
-
-
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,13 +70,9 @@ public class Frame {
                 String currency2 = "" + dropDown2.getItemAt(dropDown2.getSelectedIndex());
                 String value = input.getText();
                 getAmount(currency1, currency2, value);
-
-
-
             }
         });
     }
-
     public void getAmount(String currency1, String currency2, String value) {
         CalculateAmount c = new CalculateAmount();
         arr[0] = currency1;
@@ -88,6 +80,4 @@ public class Frame {
         arr[2] = value;
         label.setText("Amount: " + c.info());
     }
-
-
 }
