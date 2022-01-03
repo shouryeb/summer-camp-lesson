@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class CalculateAmount extends Frame{
+public class CalculateAmount extends Frame {
 
     final double YEN_FACTOR = 114.87;
     final double EURO_FACTOR = .88;
@@ -11,8 +11,7 @@ public class CalculateAmount extends Frame{
 
     Frame f1 = new Frame();
 
-    public void calculate() {
-setLabel2();
+    public String info() {
 
         String currency1 = f1.arr[0];
         String currency2 = f1.arr[1];
@@ -20,213 +19,36 @@ setLabel2();
 
         char fromUnit = currency1.charAt(0);
         char toUnit = currency2.charAt(0);
-        double money = Integer.parseInt(value);
+        double money = Double.parseDouble(value);
 
-        if (fromUnit == 'U' && toUnit == 'E') {
-            double answer = UtoE(money,false);
-            
-            
-        } else if (fromUnit == 'U' && toUnit == 'Y') {
-            double answer = UtoY(money,false);
-            
-            
-
-        } else if (fromUnit == 'U' && toUnit == 'P') {
-            double answer = UtoP(money,false);
-            
-            
-
-        } else if (fromUnit == 'U' && toUnit == 'C') {
-            double answer = UtoC(money,false);
-            
-            
-
-        } else if (fromUnit == 'U' && toUnit == 'A') {
-            double answer = UtoA(money,false);
-            
-            
-
-        } else if (fromUnit == 'E' && toUnit == 'U') {
-            double answer = UtoE(money,true);
-            
-            
-
-        } else if (fromUnit == 'E' && toUnit == 'Y') {
-            double answer = UtoY(UtoE(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'E' && toUnit == 'P') {
-            double answer = UtoP(UtoE(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'E' && toUnit == 'C') {
-            double answer = UtoC(UtoE(money, true), false);
-            
-            
-
-        } else if (fromUnit == 'E' && toUnit == 'A') {
-            double answer = UtoA(UtoE(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'Y' && toUnit == 'E') {
-            double answer = UtoE(UtoY(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'Y' && toUnit == 'P') {
-            double answer = UtoP(UtoY(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'Y' && toUnit == 'C') {
-            double answer = UtoC(UtoY(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'Y' && toUnit == 'A') {
-            double answer = UtoA(UtoY(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'Y' && toUnit == 'U') {
-            double answer =UtoY(money,true);
-            
-            
-
-        } else if (fromUnit == 'P' && toUnit == 'U') {
-            double answer = UtoP(money,true);
-            
-            
-
-        } else if (fromUnit == 'P' && toUnit == 'E') {
-            double answer = UtoE(UtoP(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'P' && toUnit == 'Y') {
-            double answer = UtoY(UtoP(money,true),false);
-            
-            
-            
-        } else if (fromUnit == 'P' && toUnit == 'C') {
-            double answer = UtoC(UtoP(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'P' && toUnit == 'A') {
-            double answer = UtoA(UtoP(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'C' && toUnit == 'U') {
-            double answer = UtoC(money,true);
-            
-            
-
-        } else if (fromUnit == 'C' && toUnit == 'E') {
-            double answer = UtoE(UtoC(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'C' && toUnit == 'Y') {
-            double answer = UtoY(UtoC(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'C' && toUnit == 'P') {
-            double answer = UtoP(UtoC(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'C' && toUnit == 'A') {
-            double answer = UtoA(UtoC(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'A' && toUnit == 'U') {
-            double answer = UtoA(money,true);
-            
-            
-
-        } else if (fromUnit == 'A' && toUnit == 'E') {
-            double answer = UtoE(UtoA(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'A' && toUnit == 'Y') {
-            double answer = UtoY(UtoA(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'A' && toUnit == 'P') {
-            double answer = UtoP(UtoA(money,true),false);
-            
-            
-
-        } else if (fromUnit == 'A' && toUnit == 'C') {
-            double answer = UtoC(UtoA(money,true),false);
-            
-
-
-        } else{
-            label.setText("Your initial conversion and final conversion are the same!");
-           
+        char[] implicitIndex = {'U','E','Y','P','C','A'};
+        int coord1 = 0;
+        for (int i = 0; i < 6; i++){
+            if (fromUnit == implicitIndex[i]){
+                coord1 = i;
+            }
         }
-    }
-
-    public double UtoY(double amount,boolean reverse){
-        if (reverse == false){
-            return amount * YEN_FACTOR;
-        } else {
-            return amount / YEN_FACTOR;
+        int coord2 = 0;
+        for (int j = 0; j < 6; j++){
+            if (toUnit == implicitIndex[j]){
+                coord2 = j;
+            }
         }
 
+        return calculate(coord1,coord2,money);
     }
-    public double UtoE(double amount, boolean reverse){
-        if (reverse == false){
-            return amount * EURO_FACTOR;
-        } else {
-            return amount / EURO_FACTOR;
-        }
-    }
-    public double UtoP(double amount, boolean reverse){
-        if (reverse == false){
-            return amount * POUND_FACTOR;
-        } else {
-            return amount / POUND_FACTOR;
-        }
-    }
-    public double UtoC(double amount, boolean reverse){
-        if (reverse == false){
-            return amount * CAN_FACTOR;
-        } else {
-            return amount / CAN_FACTOR;
-        }
-    }
-    public double UtoA(double amount, boolean reverse){
-        if (reverse == false){
-            return amount * AUS_FACTOR;
-        } else {
-            return amount / AUS_FACTOR;
-        }
-    }
+    public String calculate(int x, int y, double amount){
+        double[][] conversionFactors = {{1.00,1.12983,0.00866985,1.36,0.786396,0.721611,},
+                                        {0.880966,1.00,0.0076,1.116479,1.00,0.637946},
+                                        {115.356,130.681,1.00,155.79,90.50,82.91},
+                                        {0.741368,0.838184,0.00643971,1.00,0.583284,0.536749},
+                                        {1.26837,1.4432,0.01105,100,1.00,0.91759},
+                                        {1.39,1.57,0.012,1.87,1.09,1.00}};
 
 
+        return Integer.toString((int)(amount * (conversionFactors[y][x])));
 
 
-
-
-
-
-
-
-
-
-    public void displayAns(){
-        JLabel label = new JLabel();
 
     }
 }

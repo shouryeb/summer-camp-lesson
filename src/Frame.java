@@ -37,8 +37,8 @@ public class Frame {
             f.setIconImage(image.getImage());
             f.getContentPane().setBackground(Color.DARK_GRAY);
 
-            label.setBounds(250, 250, 200, 50);
-            label.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
+            label.setBounds(235, 300, 300, 50);
+            label.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
             label.setForeground(Color.white);
 
             input.setBounds(50, 75, 100, 50);
@@ -73,7 +73,7 @@ public class Frame {
                 String currency1 = "" + dropDown.getItemAt(dropDown.getSelectedIndex());
                 String currency2 = "" + dropDown2.getItemAt(dropDown2.getSelectedIndex());
                 String value = input.getText();
-                getAmount(currency1, currency2, value,false);
+                getAmount(currency1, currency2, value);
 
 
 
@@ -81,20 +81,12 @@ public class Frame {
         });
     }
 
-
-    public void getAmount(String currency1, String currency2, String value, boolean run) {
+    public void getAmount(String currency1, String currency2, String value) {
         CalculateAmount c = new CalculateAmount();
         arr[0] = currency1;
         arr[1] = currency2;
         arr[2] = value;
-        c.calculate();
-    }
-
-    public void setLabel2(){
-        System.out.println("Works");
-        label.setText("hello");
-        // this can be accessed from this class, but when called from other classes, it does not work.
-
+        label.setText("Amount: " + c.info());
     }
 
 
