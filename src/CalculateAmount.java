@@ -1,5 +1,3 @@
-import javax.swing.*;
-import java.awt.*;
 
 public class CalculateAmount extends Frame {
     Frame f1 = new Frame();
