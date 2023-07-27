@@ -35,7 +35,7 @@ public class Frame {
 
     label.setBounds(235, 300, 300, 50);
     label.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
-    label.setForeground(Color.purple);
+    label.setForeground(Color.red);
 
     input.setBounds(50, 75, 100, 50);
     input.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
