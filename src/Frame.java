@@ -45,7 +45,7 @@ public class Frame {
     input.setBorder(border1);
 
     dropDown.setBounds(187, 75, 150, 50);
-    dropDown.setBackground(Color.orange);
+    dropDown.setBackground(Color.green);
     dropDown.setBorder(border1);
 
     dropDown2.setBounds(375, 75, 150, 50);
