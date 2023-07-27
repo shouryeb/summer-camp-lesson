@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/* my comment */
+
 public class Frame {
   JFrame f = new JFrame();
 
@@ -39,7 +41,7 @@ public class Frame {
 
     input.setBounds(50, 75, 100, 50);
     input.setFont(new Font(Font.SERIF, Font.PLAIN, 12));
-    input.setBackground(Color.orange);
+    input.setBackground(Color.green);
     input.setBorder(border1);
 
     dropDown.setBounds(187, 75, 150, 50);
